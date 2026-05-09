@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import type { NavioResponse } from "../types/navio";
-
+import axios, { Axios } from "axios";
 import {
   atribuirNavio,
 } from "../api/expedicao.service";
@@ -60,14 +60,14 @@ export function PrepararExpedicaoPage() {
 
       navigate("/");
     } catch (error) {
-      console.error(error);
-
-      alert(
-        "Erro ao atribuir navio"
-      );
-    } finally {
-      setLoading(false);
+    if (axios.isAxiosError(error)) {
+      // Isso vai mostrar a mensagem de erro que você escreveu no Java (ex: "Navio Indisponível")
+      alert("Erro: " + error.response?.data.erro); 
     }
+    console.error(error);
+    } finally {
+        setLoading(false);
+      }
   }
 
   return (

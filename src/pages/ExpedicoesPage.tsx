@@ -38,8 +38,8 @@ export function ExpedicoesPage() {
                         <p>Navio: {exp.nomeNavio}</p>
                         <p>Status: {exp.status}</p>
 
-                        {/* Se o status for Planejada, mostra o botão de Detalhes */}
-                        {exp.status === "Planejada" ? (
+                        {/* Botão Preparar Expedição */}
+                        {exp.status === "Planejada" && (
                         <button
                             onClick={() =>
                             navigate(`/expedicoes/${exp.id}/preparar`)
@@ -48,16 +48,17 @@ export function ExpedicoesPage() {
                         >
                             Preparar Expedição
                         </button>
-                        ) : (
-                        <button
-                            onClick={() =>
-                            navigate(`/expedicoes/${exp.id}`)
-                            }
-                            className="mt-4 w-full p-2 bg-blue-600 rounded-lg hover:bg-blue-500 transition"
-                        >
-                            Detalhes
-                        </button>
                         )}
+
+                        {/* Botão Detalhes */}
+                        <button
+                        onClick={() =>
+                            navigate(`/expedicoes/${exp.id}`)
+                        }
+                        className="mt-4 w-full p-2 bg-blue-600 rounded-lg hover:bg-blue-500 transition"
+                        >
+                        Detalhes
+                        </button>
                     </div>
                 ))}
             </div>
